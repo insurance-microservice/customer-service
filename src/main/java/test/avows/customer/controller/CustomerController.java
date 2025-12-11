@@ -21,9 +21,8 @@ public class CustomerController {
         return customerService.getCustomer();
     }
 
-    @PostMapping()
-    public CustomerDto getCustomer(@RequestBody CustomerDto param) {
-        log.info("request with customer id: {}", param.getCustomerId());
-        return customerService.getCustomer(param.getCustomerId());
+    @GetMapping("/{customerId}")
+    public CustomerDto getCustomer(@PathVariable Long customerId) {
+        return customerService.getCustomer(customerId);
     }
 }
