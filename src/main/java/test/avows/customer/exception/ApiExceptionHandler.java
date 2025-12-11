@@ -1,7 +1,5 @@
 package test.avows.customer.exception;
 
-import jakarta.annotation.Nullable;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
