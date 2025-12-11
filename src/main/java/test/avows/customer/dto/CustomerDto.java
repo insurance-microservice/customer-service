@@ -14,4 +14,5 @@ public class CustomerDto {
     private String fullName;
     private String email;
     private String phone;
+    private Integer age;
 }

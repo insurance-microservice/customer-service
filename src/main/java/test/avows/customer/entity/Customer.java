@@ -30,4 +30,7 @@ public class Customer {
 
     @Column(name = "created_at")
     private Timestamp createdAt;
+
+    @Column(name = "age")
+    private Integer age;
 }
