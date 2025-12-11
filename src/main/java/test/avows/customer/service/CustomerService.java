@@ -49,4 +49,19 @@ public class CustomerService {
                         .build()
         );
     }
+
+    public void updateCustomer(Long customerId, CustomerDto param) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new ApiException(400, "not found", "no data found for customer id " + customerId));
+
+        String fullName = param.getFullName();
+        String email = param.getEmail();
+        String phone = param.getPhone();
+
+        if (fullName != null) customer.setFullName(fullName);
+        if (email != null) customer.setEmail(email);
+        if (phone != null) customer.setPhone(phone);
+
+        customerRepository.save(customer);
+    }
 }

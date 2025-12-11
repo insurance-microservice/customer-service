@@ -39,4 +39,16 @@ public class CustomerController {
                 )
         );
     }
+
+    @PutMapping("/{customerId}")
+    public ResponseEntity<ApiResponse> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDto param) {
+        customerService.updateCustomer(customerId, param);
+        return ResponseEntity.ok().body(
+                new ApiResponse(
+                        true,
+                        "successfully update customer",
+                        null
+                )
+        );
+    }
 }
