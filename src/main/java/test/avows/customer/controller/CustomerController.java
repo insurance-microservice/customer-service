@@ -2,7 +2,9 @@ package test.avows.customer.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import test.avows.customer.common.ApiResponse;
 import test.avows.customer.dto.CustomerDto;
 import test.avows.customer.service.CustomerService;
 
@@ -24,5 +26,17 @@ public class CustomerController {
     @GetMapping("/{customerId}")
     public CustomerDto getCustomer(@PathVariable Long customerId) {
         return customerService.getCustomer(customerId);
+    }
+
+    @PostMapping
+    public ResponseEntity<ApiResponse> createCustomer(@RequestBody CustomerDto param) {
+        customerService.createCustomer(param);
+        return ResponseEntity.ok().body(
+                new ApiResponse(
+                        true,
+                        "successfully create customer",
+                        null
+                )
+        );
     }
 }

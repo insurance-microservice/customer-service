@@ -3,9 +3,11 @@ package test.avows.customer.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import test.avows.customer.dto.CustomerDto;
+import test.avows.customer.entity.Customer;
 import test.avows.customer.exception.ApiException;
 import test.avows.customer.repository.CustomerRepository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -35,5 +37,16 @@ public class CustomerService {
                         .build()
                 ).orElseThrow(() -> new ApiException(400, "not found", "no data found for customer id " + customerId));
 
+    }
+
+    public void createCustomer(CustomerDto param) {
+        customerRepository.save(
+                Customer.builder()
+                        .fullName(param.getFullName())
+                        .email(param.getEmail())
+                        .phone(param.getPhone())
+                        .createdAt(new Timestamp(System.currentTimeMillis()))
+                        .build()
+        );
     }
 }
