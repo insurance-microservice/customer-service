@@ -3,6 +3,7 @@ package test.avows.customer.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import test.avows.customer.dto.CustomerDto;
+import test.avows.customer.exception.ApiException;
 import test.avows.customer.repository.CustomerRepository;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class CustomerService {
                         .email(customer.getEmail())
                         .phone(customer.getPhone())
                         .build()
-                ).orElseThrow(() -> new RuntimeException("Customer not found"));
+                ).orElseThrow(() -> new ApiException(400, "not found", "no data found for customer id " + customerId));
 
     }
 }
